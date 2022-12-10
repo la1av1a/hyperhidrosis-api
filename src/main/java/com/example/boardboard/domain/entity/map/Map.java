@@ -23,4 +23,7 @@ public class Map {
 
     @Column
     private Double longitude;
+
+    @Column
+    private String description;
 }

@@ -11,6 +11,7 @@ public class MapResponseDTO {
     private String name;
     private Double latitude;
     private Double longitude;
+    private String description;
 
     @Builder
     public MapResponseDTO(Map map){
@@ -18,5 +19,6 @@ public class MapResponseDTO {
         this.name = map.getName();
         this.latitude = map.getLatitude();
         this.longitude = map.getLongitude();
+        this.description = map.getDescription();
     }
 }
