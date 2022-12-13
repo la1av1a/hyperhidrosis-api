@@ -1,12 +1,12 @@
 package com.example.boardboard.web.dto;
 
-import com.example.boardboard.domain.entity.board.Board;
+import com.example.boardboard.domain.entity.board.Post;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class BoardRequestDTO {
+public class PostRequestDTO {
 
     @NotNull
     private String name;
@@ -16,9 +16,9 @@ public class BoardRequestDTO {
     private String comment;
 
     @Builder
-    public Board toEntity(){
+    public Post toEntity(){
 
-        return Board.builder()
+        return Post.builder()
             .name(this.name)
             .password(this.password)
             .comment(this.comment)

@@ -1,16 +1,14 @@
 package com.example.boardboard.web;
 
-import com.example.boardboard.domain.entity.board.Board;
 import com.example.boardboard.domain.service.BoardService;
-import com.example.boardboard.web.dto.BoardRequestDTO;
-import com.example.boardboard.web.dto.BoardResponseDTO;
-import java.awt.print.Pageable;
+import com.example.boardboard.web.dto.PostRequestDTO;
+import com.example.boardboard.web.dto.PostResponseDTO;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RequiredArgsConstructor
 @RestController
-public class BoardController {
+public class PostController {
 
     private final BoardService boardService;
 
@@ -33,15 +31,15 @@ public class BoardController {
 //    }
 
     @GetMapping("/posts")
-    private List<BoardResponseDTO> getBoard(@RequestParam(value = "page",required = false,defaultValue = "0") Integer page,
+    private List<PostResponseDTO> getBoard(@RequestParam(value = "page",required = false,defaultValue = "0") Integer page,
                                 @RequestParam(value = "size" ,required = false,defaultValue = "10") Integer size) {
         PageRequest pageRequest = PageRequest.of(page,size);
         return boardService.findAll(pageRequest);
     }
 
     @PostMapping("/post")
-    private HttpEntity<String> posting(@RequestBody BoardRequestDTO boardRequestDTO) {
-        boardService.post(boardRequestDTO.toEntity());
-        return new HttpEntity<>("OK");
+    private ResponseEntity<String> posting(@RequestBody PostRequestDTO postRequestDTO) {
+        boardService.post(postRequestDTO.toEntity());
+        return new ResponseEntity<>("OK",HttpStatus.OK);
     }
 }
