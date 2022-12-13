@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "https://la1av1a.github.io/")
+@CrossOrigin
 @RequiredArgsConstructor
 @RestController
 public class MapController {
